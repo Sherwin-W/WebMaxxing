@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:first_flutter_app/widgets/quotes.dart';
 
 class SplitPage extends StatefulWidget {
   const SplitPage({super.key});
@@ -29,9 +30,8 @@ class _SplitPageState extends State<SplitPage> {
             _selectedIndex = index;
           });
         },
-        children: const <Widget>[
-          // Add your page widgets here
-          Center(child: Text('Page 1')),
+        children: <Widget>[
+          QuotesWidget(), // Use QuotesWidget here
           Center(child: Text('Page 2')),
           Center(child: Text('Page 3')),
         ],
@@ -58,3 +58,4 @@ class _SplitPageState extends State<SplitPage> {
     );
   }
 }
+
