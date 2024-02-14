@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:first_flutter_app/widgets/quotes.dart';
 
 class SplitPage extends StatefulWidget {
+  const SplitPage({super.key});
+
   @override
   _SplitPageState createState() => _SplitPageState();
 }
@@ -14,7 +16,7 @@ class _SplitPageState extends State<SplitPage> {
     setState(() {
       _selectedIndex = index;
       _pageController.animateToPage(index,
-          duration: Duration(milliseconds: 300), curve: Curves.easeInOut);
+          duration: const Duration(milliseconds: 300), curve: Curves.easeInOut);
     });
   }
 

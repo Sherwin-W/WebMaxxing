@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class HomePage extends StatefulWidget {
-  HomePage({super.key});
+  const HomePage({super.key});
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -112,7 +112,7 @@ class _HomePageState extends State<HomePage> {
                             ),
                           ),
                           Text(
-                            popularDiets[index].level + ' | ' + popularDiets[index].duration + ' | ' + popularDiets[index].calorie,
+                            '${popularDiets[index].level} | ${popularDiets[index].duration} | ${popularDiets[index].calorie}',
                             style: const TextStyle(
                               color: Color(0xff7B6F72),
                               fontSize: 13,
@@ -155,7 +155,7 @@ class _HomePageState extends State<HomePage> {
             const SizedBox(
               height: 15,
             ),
-            Container(
+            SizedBox(
               height: 240,
               child: ListView.separated(
                   itemBuilder: (context, index){
@@ -180,7 +180,7 @@ class _HomePageState extends State<HomePage> {
                                 ),
                               ),
                               Text(
-                                diets[index].level + ' | ' + diets[index].duration + ' | ' + diets[index].calorie,
+                                '${diets[index].level} | ${diets[index].duration} | ${diets[index].calorie}',
                                 style: const TextStyle(
                                   color: Color(0xff7B6F72),
                                   fontSize: 13,
@@ -195,8 +195,8 @@ class _HomePageState extends State<HomePage> {
                             decoration: BoxDecoration(
                               gradient: LinearGradient(
                                 colors: [
-                                  diets[index].viewIsSelected ? Color(0xff9DCEFF) : Colors.transparent,
-                                  diets[index].viewIsSelected ? Color(0xff92A3FD) : Colors.transparent
+                                  diets[index].viewIsSelected ? const Color(0xff9DCEFF) : Colors.transparent,
+                                  diets[index].viewIsSelected ? const Color(0xff92A3FD) : Colors.transparent
                                 ]
                               ),
                               borderRadius: BorderRadius.circular(50)
@@ -205,7 +205,7 @@ class _HomePageState extends State<HomePage> {
                               child: Text(
                                 'View',
                                 style: TextStyle(
-                                  color: diets[index].viewIsSelected ? Colors.white : Color(0xffC58BF2),
+                                  color: diets[index].viewIsSelected ? Colors.white : const Color(0xffC58BF2),
                                   fontWeight: FontWeight.w600,
                                   fontSize: 14
                                 ),
@@ -217,7 +217,7 @@ class _HomePageState extends State<HomePage> {
                     );
                     
                   },
-                  separatorBuilder: (context, index) => SizedBox(width: 25,),
+                  separatorBuilder: (context, index) => const SizedBox(width: 25,),
                   itemCount: diets.length,
                   scrollDirection: Axis.horizontal,
               ),
@@ -241,7 +241,7 @@ class _HomePageState extends State<HomePage> {
         const SizedBox(
           height: 15,
         ),
-        Container(
+        SizedBox(
           height: 120,
           child: ListView.separated(
             itemCount: categories.length,
@@ -292,7 +292,7 @@ class _HomePageState extends State<HomePage> {
       decoration: BoxDecoration(
         boxShadow: [
           BoxShadow(
-              color: Color(0xff1d1617).withOpacity(0.11),
+              color: const Color(0xff1d1617).withOpacity(0.11),
               blurRadius: 40,
               spreadRadius: 0.0)
         ],
@@ -311,7 +311,7 @@ class _HomePageState extends State<HomePage> {
             padding: const EdgeInsets.all(12),
             child: SvgPicture.asset('assets/icons/Search.svg'),
           ),
-          suffixIcon: Container(
+          suffixIcon: SizedBox(
             width: 100,
             child: IntrinsicHeight(
               child: Row(
@@ -350,10 +350,10 @@ class _HomePageState extends State<HomePage> {
       leading: GestureDetector(
         onTap: () {},
         child: Container(
-          margin: EdgeInsets.all(10),
+          margin: const EdgeInsets.all(10),
           alignment: Alignment.center,
           decoration: BoxDecoration(
-              color: Color(0xffF7F8F8),
+              color: const Color(0xffF7F8F8),
               borderRadius: BorderRadius.circular(10)),
           child: SvgPicture.asset(
             'assets/icons/Arrow - Left 2.svg',
@@ -366,11 +366,11 @@ class _HomePageState extends State<HomePage> {
         GestureDetector(
           onTap: () {},
           child: Container(
-            margin: EdgeInsets.all(10),
+            margin: const EdgeInsets.all(10),
             alignment: Alignment.center,
             width: 37,
             decoration: BoxDecoration(
-                color: Color(0xffF7F8F8),
+                color: const Color(0xffF7F8F8),
                 borderRadius: BorderRadius.circular(10)),
             child: SvgPicture.asset(
               'assets/icons/dots.svg',
