@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:first_flutter_app/widgets/quotes.dart';
+import 'package:first_flutter_app/widgets/edge.dart';
 
 class SplitPage extends StatefulWidget {
   const SplitPage({super.key});
@@ -30,31 +31,9 @@ class _SplitPageState extends State<SplitPage> {
             _selectedIndex = index;
           });
         },
-        children: const <Widget>[
+        children: <Widget>[
           QuotesWidget(), // Use QuotesWidget here
-          Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: <Widget>[
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: <Widget>[
-                    Text('Hours'),
-                    Text('Minutes'),
-                    Text('Seconds'),
-                  ],
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: <Widget>[
-                    ElevatedButton(onPressed: null, child: Text('Start')),
-                    ElevatedButton(onPressed: null, child: Text('Pause')),
-                  ],
-                )
-                ],
-              
-            ),
-          ),
+          EdgeWidget(),
           Center(child: Text('Page 3')),
         ],
       ),
@@ -70,7 +49,7 @@ class _SplitPageState extends State<SplitPage> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.camera_alt),
-            label: 'Pictures',
+            label: 'LooksMaxxing',
           ),
         ],
         currentIndex: _selectedIndex,
