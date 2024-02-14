@@ -31,7 +31,7 @@ class _SplitPageState extends State<SplitPage> {
             _selectedIndex = index;
           });
         },
-        children: <Widget>[
+        children: const <Widget>[
           QuotesWidget(), // Use QuotesWidget here
           EdgeWidget(),
           Center(child: Text('Page 3')),

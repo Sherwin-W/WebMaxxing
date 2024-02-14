@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class EdgeWidget extends StatefulWidget {
+  const EdgeWidget({super.key});
+
   @override
   _EdgeWidgetState createState() => _EdgeWidgetState();
 }
@@ -12,7 +14,7 @@ class _EdgeWidgetState extends State<EdgeWidget> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
-          Row(
+          const Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
               Text('Hours'),
@@ -25,10 +27,10 @@ class _EdgeWidgetState extends State<EdgeWidget> {
             children: <Widget>[
               ElevatedButton(onPressed: () {
                 // Implement start functionality
-              }, child: Text('Start')),
+              }, child: const Text('Start')),
               ElevatedButton(onPressed: () {
                 // Implement pause functionality
-              }, child: Text('Pause')),
+              }, child: const Text('Pause')),
             ],
           )
         ],
