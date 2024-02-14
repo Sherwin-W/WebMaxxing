@@ -32,7 +32,29 @@ class _SplitPageState extends State<SplitPage> {
         children: const <Widget>[
           // Add your page widgets here
           Center(child: Text('Page 1')),
-          Center(child: Text('Page 2')),
+          Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: <Widget>[
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: <Widget>[
+                    Text('Hours'),
+                    Text('Minutes'),
+                    Text('Seconds'),
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: <Widget>[
+                    ElevatedButton(onPressed: null, child: Text('Start')),
+                    ElevatedButton(onPressed: null, child: Text('Pause')),
+                  ],
+                )
+                ],
+              
+            )
+          ),
           Center(child: Text('Page 3')),
         ],
       ),
