@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class SplitPage extends StatefulWidget {
+  const SplitPage({super.key});
+
   @override
   _SplitPageState createState() => _SplitPageState();
 }
@@ -13,7 +15,7 @@ class _SplitPageState extends State<SplitPage> {
     setState(() {
       _selectedIndex = index;
       _pageController.animateToPage(index,
-          duration: Duration(milliseconds: 300), curve: Curves.easeInOut);
+          duration: const Duration(milliseconds: 300), curve: Curves.easeInOut);
     });
   }
 
@@ -27,7 +29,7 @@ class _SplitPageState extends State<SplitPage> {
             _selectedIndex = index;
           });
         },
-        children: <Widget>[
+        children: const <Widget>[
           // Add your page widgets here
           Center(child: Text('Page 1')),
           Center(child: Text('Page 2')),
