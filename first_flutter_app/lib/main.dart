@@ -1,9 +1,8 @@
-import 'package:first_flutter_app/pages/home.dart';
 import 'package:first_flutter_app/pages/split.dart';
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -14,7 +13,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(fontFamily: 'Poppins'),
-      home: SplitPage()
+      home: const SplitPage()
     );
   }
 }
