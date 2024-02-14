@@ -2,6 +2,8 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 
 class QuotesWidget extends StatefulWidget {
+  const QuotesWidget({super.key});
+
   @override
   _QuotesWidgetState createState() => _QuotesWidgetState();
 }
@@ -67,7 +69,7 @@ class _QuotesWidgetState extends State<QuotesWidget> {
   }
 
   void _startTimer() {
-    _timer = Timer.periodic(Duration(seconds: 5), (timer) {
+    _timer = Timer.periodic(const Duration(seconds: 5), (timer) {
       setState(() {
         _currentIndex = (_currentIndex + 1) % _quotes.length;
       });
@@ -84,14 +86,14 @@ class _QuotesWidgetState extends State<QuotesWidget> {
   Widget build(BuildContext context) {
     return Center(
       child: AnimatedSwitcher(
-        duration: Duration(seconds: 1),
+        duration: const Duration(seconds: 1),
         transitionBuilder: (Widget child, Animation<double> animation) {
-          return FadeTransition(child: child, opacity: animation);
+          return FadeTransition(opacity: animation, child: child);
         },
         child: Text(
           _quotes[_currentIndex],
           key: ValueKey<int>(_currentIndex), // Important for changing animation
-          style: TextStyle(
+          style: const TextStyle(
             fontFamily: 'WinterSong',
             fontWeight: FontWeight.w600,
             fontSize: 30,

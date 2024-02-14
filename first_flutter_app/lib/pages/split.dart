@@ -30,7 +30,7 @@ class _SplitPageState extends State<SplitPage> {
             _selectedIndex = index;
           });
         },
-        children: <Widget>[
+        children: const <Widget>[
           QuotesWidget(), // Use QuotesWidget here
           Center(
             child: Column(
@@ -54,6 +54,7 @@ class _SplitPageState extends State<SplitPage> {
                 ],
               
             ),
+          ),
           Center(child: Text('Page 3')),
         ],
       ),
