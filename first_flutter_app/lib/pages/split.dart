@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:first_flutter_app/widgets/quotes.dart';
 import 'package:first_flutter_app/widgets/edge.dart';
+import 'package:first_flutter_app/widgets/looks_maxxing.dart';
 
 class SplitPage extends StatefulWidget {
   const SplitPage({super.key});
@@ -34,7 +35,7 @@ class _SplitPageState extends State<SplitPage> {
         children: const <Widget>[
           QuotesWidget(), // Use QuotesWidget here
           EdgeWidget(),
-          Center(child: Text('Page 3')),
+          LooksMaxxingWidget(), //Center(child: Text('Page 3')),
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
