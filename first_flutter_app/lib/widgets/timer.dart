@@ -95,7 +95,7 @@ class _TimerScreenState extends State<TimerScreen> {
               ),
             const SizedBox(height: 20),
             Row(
-              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 if (!_isRunning)
                   ElevatedButton(
@@ -107,7 +107,6 @@ class _TimerScreenState extends State<TimerScreen> {
                     onPressed: _pauseTimer,
                     child: const Text('Pause'),
                   ),
-                const SizedBox(width: 20),
                 ElevatedButton(
                   onPressed: _resetTimer,
                   child: const Text('Reset'),
