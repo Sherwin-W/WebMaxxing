@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:first_flutter_app/widgets/photo_view_page.dart';
-// Add your NewPage import here, adjust the path as necessary
 import 'package:first_flutter_app/widgets/load_image.dart';
 
 class LooksMaxxingWidget extends StatelessWidget {
@@ -29,7 +28,7 @@ class LooksMaxxingWidget extends StatelessWidget {
               // Navigate to the NewPage when the "+" button is pressed
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => AddImage()), // Assuming NewPage is your new page class
+                MaterialPageRoute(builder: (context) => AddImage()), 
               );
             },
           ),
