@@ -28,7 +28,7 @@ class LooksMaxxingWidget extends StatelessWidget {
               // Navigate to the NewPage when the "+" button is pressed
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => AddImage()), 
+                MaterialPageRoute(builder: (context) => const AddImage()), 
               );
             },
           ),

@@ -12,7 +12,7 @@ Future<void> uploadImage(File image, BuildContext context) async {
     UploadTask uploadTask = ref.putFile(image); // Start the upload task.
     await uploadTask; // Wait for the upload to complete.
     // Show a success message.
-    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Image uploaded successfully')));
+    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Image uploaded successfully')));
   } catch (e) {
     // Show an error message if something goes wrong.
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(e.toString())));

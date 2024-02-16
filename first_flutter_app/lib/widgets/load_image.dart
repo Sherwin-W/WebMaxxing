@@ -4,6 +4,8 @@ import 'package:image_picker/image_picker.dart'; // Import the image_picker libr
 import 'upload_image.dart'; // Import the upload_image.dart file for uploading functionality.
 
 class AddImage extends StatefulWidget {
+  const AddImage({super.key});
+
   @override
   _AddImageState createState() => _AddImageState(); // Create state for the widget.
 }
@@ -28,25 +30,25 @@ class _AddImageState extends State<AddImage> {
     // Build UI elements.
     return Scaffold(
       appBar: AppBar(
-        title: Text('Add Image'), // App bar title.
+        title: const Text('Add Image'), // App bar title.
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            _image != null ? Image.file(_image!) : Text('No image selected.'), // Display the selected/taken image or a text message.
+            _image != null ? Image.file(_image!) : const Text('No image selected.'), // Display the selected/taken image or a text message.
             ElevatedButton(
               onPressed: () => pickImage(ImageSource.camera), // Button to take picture.
-              child: Text('Take Picture'),
+              child: const Text('Take Picture'),
             ),
             ElevatedButton(
               onPressed: () => pickImage(ImageSource.gallery), // Button to pick from gallery.
-              child: Text('Pick from Gallery'),
+              child: const Text('Pick from Gallery'),
             ),
             if (_image != null) // Show upload button only if an image is selected/taken.
               ElevatedButton(
                 onPressed: () => uploadImage(_image!, context), // Button to upload the image.
-                child: Text('Upload Image'),
+                child: const Text('Upload Image'),
               ),
           ],
         ),
