@@ -38,7 +38,8 @@ dependencies:
   flutter_svg: ^1.1.6
   cached_network_image: ^3.3.1 #for looksmaxxing
   photo_view: ^0.14.0 #looksmaxxing
-  image_picker: ^1.0.7
+  image_picker: ^1.0.7 #looksmaxxing
+  firebase_storage: ^11.6.5 #looksmaxxing
 
 dev_dependencies:
   flutter_test:
