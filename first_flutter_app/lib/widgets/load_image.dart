@@ -1,7 +1,8 @@
 import 'dart:io'; // Import Dart's IO library to work with file objects.
 import 'package:flutter/material.dart'; // Import Flutter material design library.
 import 'package:image_picker/image_picker.dart'; // Import the image_picker library.
-import 'upload_image.dart'; // Import the upload_image.dart file for uploading functionality.
+import 'package:path_provider/path_provider.dart'; 
+import 'package:path/path.dart' as path;
 
 class AddImage extends StatefulWidget {
   const AddImage({super.key});
@@ -11,48 +12,113 @@ class AddImage extends StatefulWidget {
 }
 
 class _AddImageState extends State<AddImage> {
-  File? _image; // Variable to hold the selected or taken image.
+  final ImagePicker _picker = ImagePicker();
+  final double padding = 20.0;
+  
+  XFile? pickedFile;
 
-  // Function to handle image picking from gallery or camera.
-  Future pickImage(ImageSource source) async {
-    final pickedFile = await ImagePicker().pickImage(source: source); // Open image picker dialog.
-
-    // Check if an image was selected or taken.
-    if (pickedFile != null) {
-      setState(() {
-        _image = File(pickedFile.path); // Update _image with the selected/taken image.
-      });
-    }
+  @override
+  void initState() {
+    super.initState();
+    loadImage();
   }
 
   @override
   Widget build(BuildContext context) {
-    // Build UI elements.
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Add Image'), // App bar title.
+        title: const Text("Image Picker"),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+      body: Padding(
+        padding: EdgeInsets.symmetric(horizontal: padding),
+        child: ListView(
           children: [
-            _image != null ? Image.file(_image!) : const Text('No image selected.'), // Display the selected/taken image or a text message.
-            ElevatedButton(
-              onPressed: () => pickImage(ImageSource.camera), // Button to take picture.
-              child: const Text('Take Picture'),
-            ),
-            ElevatedButton(
-              onPressed: () => pickImage(ImageSource.gallery), // Button to pick from gallery.
-              child: const Text('Pick from Gallery'),
-            ),
-            if (_image != null) // Show upload button only if an image is selected/taken.
-              ElevatedButton(
-                onPressed: () => uploadImage(_image!, context), // Button to upload the image.
-                child: const Text('Upload Image'),
-              ),
+            SizedBox(height: padding,),
+            ElevatedButton(onPressed: pickImage, child: const Text("Pick Image")),
+            SizedBox(height: padding/2,),
+            ElevatedButton(onPressed: capturePhoto, child: const Text("Capture Photo")),
+            SizedBox(height: padding/2,),
+            pickedFile!=null? Image.file(File(pickedFile!.path)) : Container(),
+            pickedFile!=null? SizedBox(height: padding,) : Container(),
           ],
         ),
       ),
     );
   }
+
+  /// Pick an image
+  void pickImage() async {
+    final XFile? image = await _picker.pickImage(source: ImageSource.gallery);
+    if (image != null) {
+      setState(() {
+        pickedFile = image;
+      });
+
+      saveImage(image);
+
+    }
+  }
+
+  /// Capture a photo
+  void capturePhoto() async {
+    final XFile? photo = await _picker.pickImage(source: ImageSource.camera);
+    if (photo != null) {
+      setState(() {
+        pickedFile = photo;
+      });
+
+      saveImage(photo);
+
+    }
+  }
+
+  //save image
+  void saveImage(XFile img) async {
+    // Step 3: Get directory where we can duplicate selected file.
+    final String directoryPath = (await getApplicationDocumentsDirectory()).path;
+
+    File convertedImg = File(img.path);
+
+    // Step 4: Copy the file to a application document directory.
+    // Extract the filename from the path.
+    final String fileName = path.basename(convertedImg.path);
+    //final String fileName = "the_image.jpg";
+    final File localImage = await convertedImg.copy('$directoryPath/$fileName');
+    print("Saved image under: $directoryPath/$fileName");
+  }
+
+  void loadImage() async {
+    final directory = await getApplicationDocumentsDirectory();
+    final directoryPath = directory.path;
+    final dir = Directory(directoryPath);
+    List<FileSystemEntity> files = dir.listSync(); // List all files in the directory.
+
+    // Filter out all files that are not images or according to a naming convention if applicable.
+    var imageFiles = files.where((file) => path.extension(file.path).toLowerCase() == '.jpg' || path.extension(file.path).toLowerCase() == '.png');
+
+    // Assuming we want the most recently created file if there are multiple.
+    FileSystemEntity? newestImage;
+    DateTime? newestDate;
+
+    for (var file in imageFiles) {
+      final fileStat = await file.stat();
+      if (newestDate == null || fileStat.changed.isAfter(newestDate)) {
+        newestImage = file;
+        newestDate = fileStat.changed;
+      }
+    }
+
+    if (newestImage != null) {
+      print("Image exists. Loading it...");
+      setState(() {
+        pickedFile = XFile(newestImage!.path);
+      });
+    } else {
+      print("No image found");
+    }
+  }
+
 }
+
+//reference : https://github.com/eclectifyTutorials/YT_Tutorial_Pkg_Image_Picker/blob/main/main.dart
+//reference : https://github.com/eclectifyTutorials/YT_Tutorial_Pkg_Image_Picker

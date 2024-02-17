@@ -45,5 +45,12 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+
+	<!-- For IOS camera and gallery accesse -->
+	<key>NSCameraUsageDescription</key>
+    	<string>Used to demonstrate image picker plugin</string>
+    <key>NSPhotoLibraryUsageDescription</key>
+    	<string>Used to demonstrate image picker plugin</string>
+
 </dict>
 </plist>
