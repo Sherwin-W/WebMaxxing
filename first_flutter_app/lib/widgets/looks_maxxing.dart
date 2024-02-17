@@ -4,7 +4,7 @@ import 'package:first_flutter_app/widgets/photo_view_page.dart';
 import 'package:first_flutter_app/widgets/load_image.dart';
 
 class LooksMaxxingWidget extends StatelessWidget {
-  const LooksMaxxingWidget({Key? key}) : super(key: key);
+  const LooksMaxxingWidget({super.key});
 
   final List<String> photos = const [
     'https://m.media-amazon.com/images/I/71IeYNcBYdL._SX679_.jpg',

@@ -8,13 +8,13 @@ class NavItem extends StatelessWidget {
   final Function(int) onTap;
 
   const NavItem({
-    Key? key,
+    super.key,
     required this.icon,
     required this.label,
     required this.index,
     required this.isSelected,
     required this.onTap,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
