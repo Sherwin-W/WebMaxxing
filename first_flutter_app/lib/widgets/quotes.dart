@@ -94,7 +94,7 @@ class _QuotesWidgetState extends State<QuotesWidget> {
           _quotes[_currentIndex],
           key: ValueKey<int>(_currentIndex), // Important for changing animation
           style: const TextStyle(
-            fontFamily: 'WinterSong',
+            fontFamily: 'Tusj',
             fontWeight: FontWeight.w600,
             fontSize: 30,
           ),
