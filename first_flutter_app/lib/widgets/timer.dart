@@ -1,7 +1,9 @@
 import 'dart:async';
 
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:toggle_switch/toggle_switch.dart';
 
 class TimerScreen extends StatefulWidget {
   const TimerScreen({super.key});
@@ -16,8 +18,18 @@ class _TimerScreenState extends State<TimerScreen> {
   bool _isRunning = false;
   bool _isPaused = false;
   bool _isReset = true;
+  bool _isTicking = false;
+  final AudioPlayer _audioPlayer = AudioPlayer();
+  Duration _originalDuration = const Duration(seconds: 0);
+
+  void _playClickSound() async {
+    await _audioPlayer.play(AssetSource('audio/click.mp3'));
+  }
 
   void _startTimer() {
+    if (_isReset) {
+      _originalDuration = _duration;
+    }
     setState(() {
       _isRunning = true;
       _isPaused = false;
@@ -28,6 +40,7 @@ class _TimerScreenState extends State<TimerScreen> {
         setState(() {
           _duration = _duration - const Duration(seconds: 1);
         });
+        if (_isTicking) _playClickSound();
       } else {
         _timer!.cancel();
         setState(() {
@@ -51,6 +64,7 @@ class _TimerScreenState extends State<TimerScreen> {
   }
 
   void _resetTimer() {
+    _originalDuration = const Duration(seconds: 0);
     if (_timer != null) {
       _timer!.cancel();
     }
@@ -64,20 +78,55 @@ class _TimerScreenState extends State<TimerScreen> {
     });
   }
 
+  String formatDuration(Duration duration) {
+    String twoDigits(int n) => n.toString().padLeft(2, '0');
+    if (duration.inHours > 0) {
+      final hours = twoDigits(duration.inHours);
+      final minutes = twoDigits(duration.inMinutes.remainder(60));
+      final seconds = twoDigits(duration.inSeconds.remainder(60));
+      return "$hours:$minutes:$seconds";
+    }
+    else {
+      final minutes = twoDigits(duration.inMinutes);
+      final seconds = twoDigits(duration.inSeconds.remainder(60));
+      return "$minutes:$seconds";
+    }
+  }
+
+  double _getProgress() {
+    if (_originalDuration.inSeconds == 0) {
+      return 0;
+    }
+    return 1 - _duration.inSeconds / _originalDuration.inSeconds;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Timer App'),
+        title: const Text('Edge Timer'),
       ),
       body: Center(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
             if (_isRunning || _isPaused)
               Text(
-                _duration.toString().split('.').first.padLeft(8, "0"),
-                style: const TextStyle(fontSize: 40),
+                formatDuration(_duration), 
+                style: const TextStyle(fontSize: 40)
+              ),
+            if (_isRunning || _isPaused)
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width / 1.5,
+                    child: LinearProgressIndicator(
+                      value: _getProgress(),
+                      minHeight: 20,
+                    ),
+                  ),
+                ],
               )
             else
               SizedBox(
@@ -92,7 +141,6 @@ class _TimerScreenState extends State<TimerScreen> {
                   },
                 ),
               ),
-            const SizedBox(height: 20),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -112,6 +160,17 @@ class _TimerScreenState extends State<TimerScreen> {
                 ),
               ],
             ),
+            ToggleSwitch(
+              minWidth: 90.0,
+              cornerRadius: 20.0,
+              labels: const ['Tick', 'Silent'],
+              initialLabelIndex: _isTicking ? 0 : 1,
+              onToggle: (index) {
+                setState(() {
+                  _isTicking = !_isTicking;
+                });
+              },
+            )
           ],
         ),
       ),
