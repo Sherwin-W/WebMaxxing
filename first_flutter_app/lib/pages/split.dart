@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:first_flutter_app/widgets/quotes.dart';
 import 'package:first_flutter_app/widgets/edge.dart';
 import 'package:first_flutter_app/widgets/looks_maxxing.dart';
+import 'package:first_flutter_app/widgets/nav_item.dart';
 
 class SplitPage extends StatefulWidget {
   const SplitPage({super.key});
@@ -33,31 +34,39 @@ class _SplitPageState extends State<SplitPage> {
           });
         },
         children: const <Widget>[
-          QuotesWidget(), // Use QuotesWidget here
+          QuotesWidget(),
           EdgeWidget(),
-          LooksMaxxingWidget(), //Center(child: Text('Page 3')),
+          LooksMaxxingWidget(),
         ],
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.library_books),
-            label: 'Quote of The Day',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.airline_seat_recline_extra),
-            label: 'Edging',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.camera_alt),
-            label: 'LooksMaxxing',
-          ),
-        ],
-        currentIndex: _selectedIndex,
-        selectedItemColor: Colors.amber[800],
-        onTap: _onItemTapped,
+      bottomNavigationBar: BottomAppBar(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: <Widget>[
+            NavItem(
+              icon: Icons.library_books,
+              label: 'Quote of The Day',
+              index: 0,
+              isSelected: _selectedIndex == 0,
+              onTap: _onItemTapped,
+            ),
+            NavItem(
+              icon: Icons.airline_seat_recline_extra,
+              label: 'Edging',
+              index: 1,
+              isSelected: _selectedIndex == 1,
+              onTap: _onItemTapped,
+            ),
+            NavItem(
+              icon: Icons.camera_alt,
+              label: 'LooksMaxxing',
+              index: 2,
+              isSelected: _selectedIndex == 2,
+              onTap: _onItemTapped,
+            ),
+          ],
+        ),
       ),
     );
   }
 }
-
