@@ -94,6 +94,10 @@ flutter:
       fonts:
         - asset: fonts/WinterSong-owRGB.ttf
           weight: 600
+    - family: Tusj
+      fonts:
+        - asset: fonts/FFF_Tusj.ttf
+          weight: 600
   #   - family: Trajan Pro
   #     fonts:
   #       - asset: fonts/TrajanPro.ttf

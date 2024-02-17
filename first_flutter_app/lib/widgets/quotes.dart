@@ -69,7 +69,7 @@ class _QuotesWidgetState extends State<QuotesWidget> {
   }
 
   void _startTimer() {
-    _timer = Timer.periodic(const Duration(seconds: 5), (timer) {
+    _timer = Timer.periodic(const Duration(seconds: 8), (timer) {
       setState(() {
         _currentIndex = (_currentIndex + 1) % _quotes.length;
       });
@@ -94,7 +94,7 @@ class _QuotesWidgetState extends State<QuotesWidget> {
           _quotes[_currentIndex],
           key: ValueKey<int>(_currentIndex), // Important for changing animation
           style: const TextStyle(
-            fontFamily: 'WinterSong',
+            fontFamily: 'Tusj',
             fontWeight: FontWeight.w600,
             fontSize: 30,
           ),
