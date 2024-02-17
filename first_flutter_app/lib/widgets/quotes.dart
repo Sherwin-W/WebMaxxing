@@ -10,7 +10,6 @@ class QuotesWidget extends StatefulWidget {
 
 class _QuotesWidgetState extends State<QuotesWidget> {
   int _currentIndex = 0;
-  Timer? _timer;
 
   // Array of quotes
   final List<String> _quotes = [
@@ -62,43 +61,41 @@ class _QuotesWidgetState extends State<QuotesWidget> {
   "The edge is where goons flirt with destiny and wisdom."
 ];
 
-  @override
-  void initState() {
-    super.initState();
-    _startTimer();
-  }
-
-  void _startTimer() {
-    _timer = Timer.periodic(const Duration(seconds: 5), (timer) {
-      setState(() {
-        _currentIndex = (_currentIndex + 1) % _quotes.length;
-      });
+  void _nextQuote() {
+    setState(() {
+      _currentIndex = (_currentIndex + 1) % _quotes.length;
     });
   }
 
   @override
-  void dispose() {
-    _timer?.cancel();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    return Center(
-      child: AnimatedSwitcher(
-        duration: const Duration(seconds: 1),
-        transitionBuilder: (Widget child, Animation<double> animation) {
-          return FadeTransition(opacity: animation, child: child);
-        },
-        child: Text(
-          _quotes[_currentIndex],
-          key: ValueKey<int>(_currentIndex), // Important for changing animation
-          style: const TextStyle(
-            fontFamily: 'Tusj',
-            fontWeight: FontWeight.w600,
-            fontSize: 30,
+    return GestureDetector(
+      onTap: _nextQuote, // Change quote on tap
+      child: Container(
+        padding: const EdgeInsets.all(20.0), // Padding around the quote
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [Color(0xffee9ca7), Color(0xF6F0ED)], // Example gradient colors
           ),
-          textAlign: TextAlign.center,
+        ),
+        alignment: Alignment.center,
+        child: AnimatedSwitcher(
+          duration: const Duration(seconds: 1),
+          transitionBuilder: (Widget child, Animation<double> animation) {
+            return FadeTransition(opacity: animation, child: child);
+          },
+          child: Text(
+            _quotes[_currentIndex],
+            key: ValueKey<int>(_currentIndex), // Important for changing animation
+            style: const TextStyle(
+              fontFamily: 'Tusj',
+              fontWeight: FontWeight.w600,
+              fontSize: 30,
+            ),
+            textAlign: TextAlign.center,
+          ),
         ),
       ),
     );
