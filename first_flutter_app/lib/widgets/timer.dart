@@ -35,7 +35,6 @@ class _TimerScreenState extends State<TimerScreen> {
           _isPaused = false;
           _isReset = true;
         });
-        print("Timer Complete");
       }
     });
   }

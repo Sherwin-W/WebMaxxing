@@ -21,17 +21,17 @@ class NavItem extends StatelessWidget {
     return Expanded(
       child: GestureDetector(
         onTap: () => onTap(index),
-        child: Container(
+        child: SizedBox(
           height: 60, // Keeping a fixed height to prevent overflow
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Icon(icon, color: isSelected ? Color(0xFF28536B) : Color(0xFF7EA8BE), size: 24),
-              SizedBox(height: 4), // Spacing between icon and text
+              Icon(icon, color: isSelected ? const Color(0xFF28536B) : const Color(0xFF7EA8BE), size: 24),
+              const SizedBox(height: 4), // Spacing between icon and text
               AnimatedOpacity(
                 opacity: isSelected ? 1.0 : 0.0, // Fade in if selected, otherwise fade out
                 duration: const Duration(milliseconds: 300),
-                child: Text(label, style: TextStyle(color: Color(0xFF28536B), fontSize: 12)),
+                child: Text(label, style: const TextStyle(color: Color(0xFF28536B), fontSize: 12)),
               ),
             ],
           ),

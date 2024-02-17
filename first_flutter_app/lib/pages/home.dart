@@ -263,7 +263,7 @@ class _HomePageState extends State<HomePage> {
                       width: 50,
                       height: 50,
                       decoration: const BoxDecoration(
-                          color: Color(0xF6F0ED), shape: BoxShape.circle),
+                          color: Color(0x00f6f0ed), shape: BoxShape.circle),
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: SvgPicture.asset(categories[index].iconPath),
