@@ -43,6 +43,7 @@ dependencies:
   image_picker: ^1.0.7 #looksmaxxing
   path_provider: ^2.1.2 #looksmaxxing
   path: ^1.8.3 #looksmaxxing
+  google_nav_bar: ^5.0.6 # split bottom nav bar
 
 dev_dependencies:
   flutter_test:
