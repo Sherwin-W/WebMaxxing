@@ -69,6 +69,17 @@ class _LooksMaxxingWidgetState extends State<LooksMaxxingWidget> {
             },
           ),
           //end
+          IconButton(
+            icon: const Icon(Icons.delete),
+            onPressed: () {
+              if (photos.isNotEmpty) {
+                setState(() {
+                  photos.removeLast(); // Remove the last image from the list
+                  _savePhotos(); // Update the saved list in SharedPreferences
+                });
+              }
+            },
+          ),
         ],
       ),
       body: GridView.builder(
