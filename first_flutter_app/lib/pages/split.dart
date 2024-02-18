@@ -66,9 +66,9 @@ class _SplitPageState extends State<SplitPage> with SingleTickerProviderStateMix
             _selectedIndex = index;
           });
         },
-        children: const <Widget>[
-          QuotesWidget(),
-          EdgeWidget(),
+        children: <Widget>[
+          const QuotesWidget(),
+          const EdgeWidget(),
           LooksMaxxingWidget(),
         ],
       ),

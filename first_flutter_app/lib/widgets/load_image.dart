@@ -8,7 +8,7 @@ class AddImage extends StatefulWidget {
   const AddImage({super.key});
 
   @override
-  _AddImageState createState() => _AddImageState(); // Create state for the widget.
+  _AddImageState createState() => _AddImageState();
 }
 
 class _AddImageState extends State<AddImage> {
@@ -36,16 +36,26 @@ class _AddImageState extends State<AddImage> {
             SizedBox(height: padding,),
             ElevatedButton(onPressed: pickImage, child: const Text("Pick Image")),
             SizedBox(height: padding/2,),
-            ElevatedButton(onPressed: capturePhoto, child: const Text("Capture Photo")),
+            ElevatedButton(onPressed: capturePhoto, child: const Text("Take Photo")),
             SizedBox(height: padding/2,),
             pickedFile!=null? Image.file(File(pickedFile!.path)) : Container(),
             pickedFile!=null? SizedBox(height: padding,) : Container(),
+            
+            ElevatedButton(onPressed: ok, child: const Text("ok")),
+            SizedBox(height: padding/2,),
           ],
         ),
       ),
     );
   }
 
+  //ok button
+  void ok() async {
+    if (pickedFile != null) {
+    Navigator.pop(context, pickedFile!.path); // Return the path of the picked image
+    }
+  }
+  
   /// Pick an image
   void pickImage() async {
     final XFile? image = await _picker.pickImage(source: ImageSource.gallery);
@@ -82,7 +92,6 @@ class _AddImageState extends State<AddImage> {
     // Step 4: Copy the file to a application document directory.
     // Extract the filename from the path.
     final String fileName = path.basename(convertedImg.path);
-    //final String fileName = "the_image.jpg";
     final File localImage = await convertedImg.copy('$directoryPath/$fileName');
     print("Saved image under: $directoryPath/$fileName");
   }
@@ -122,3 +131,7 @@ class _AddImageState extends State<AddImage> {
 
 //reference : https://github.com/eclectifyTutorials/YT_Tutorial_Pkg_Image_Picker/blob/main/main.dart
 //reference : https://github.com/eclectifyTutorials/YT_Tutorial_Pkg_Image_Picker
+
+//path_provider is used to save the image local database
+//possible way to make it better :  Isar DB and Hive to save 
+//load image
