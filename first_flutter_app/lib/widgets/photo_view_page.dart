@@ -1,8 +1,8 @@
+import 'dart:io';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:photo_view/photo_view.dart';
 import 'package:photo_view/photo_view_gallery.dart';
-import 'dart:io';
 
 class PhotoViewPage extends StatelessWidget {
   final List<String> photos;
