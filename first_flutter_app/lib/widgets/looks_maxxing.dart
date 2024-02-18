@@ -16,7 +16,6 @@ class LooksMaxxingWidget extends StatefulWidget {
 class _LooksMaxxingWidgetState extends State<LooksMaxxingWidget> {
 
   List<String> photos = [
-    'asset:pics/looksmax.png',
     'https://m.media-amazon.com/images/I/71IeYNcBYdL._SX679_.jpg',
   ];
 
