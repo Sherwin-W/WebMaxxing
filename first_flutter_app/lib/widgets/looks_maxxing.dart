@@ -6,27 +6,17 @@ import 'package:first_flutter_app/widgets/load_image.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 
-//changed
 class LooksMaxxingWidget extends StatefulWidget {
   LooksMaxxingWidget({Key? key}) : super(key: key);
 
   @override
   _LooksMaxxingWidgetState createState() => _LooksMaxxingWidgetState();
 }
-//end
-//class LooksMaxxingWidget extends StatelessWidget
 
 class _LooksMaxxingWidgetState extends State<LooksMaxxingWidget> {
-  //const LooksMaxxingWidget({Key? key}) : super(key: key);
 
   List<String> photos = [
     'https://m.media-amazon.com/images/I/71IeYNcBYdL._SX679_.jpg',
-    'https://upload.wikimedia.org/wikipedia/commons/e/e7/Everest_North_Face_toward_Base_Camp_Tibet_Luca_Galuzzi_2006.jpg',
-    'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Bas%C3%ADlica_de_Notre-Dame%2C_Montreal%2C_Canad%C3%A1%2C_2017-08-11%2C_DD_20-22_HDR.jpg/1293px-Bas%C3%ADlica_de_Notre-Dame%2C_Montreal%2C_Canad%C3%A1%2C_2017-08-11%2C_DD_20-22_HDR.jpg?20200123210836',
-    'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg/1513px-Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg?20121101035929',
-    'https://cdn.pixabay.com/photo/2015/04/19/08/32/marguerite-729510__340.jpg',
-    'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Vincent_Van_Gogh_0010.jpg/924px-Vincent_Van_Gogh_0010.jpg',
-    'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Welcome_to_Las_Vegas_sign.jpg/1600px-Welcome_to_Las_Vegas_sign.jpg',
   ];
 
   @override
@@ -50,9 +40,9 @@ class _LooksMaxxingWidgetState extends State<LooksMaxxingWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("LOOOOOOksMaXXXXXXXing"),
+        title: const Text("LooksMaxxing"),
         actions: <Widget>[
-          //changed
+          //add new image from load_image.dart
           IconButton(
             icon: const Icon(Icons.add),
             onPressed: () async {
@@ -68,7 +58,7 @@ class _LooksMaxxingWidgetState extends State<LooksMaxxingWidget> {
               }
             },
           ),
-          //end
+          //delete the latest image
           IconButton(
             icon: const Icon(Icons.delete),
             onPressed: () {
