@@ -49,13 +49,6 @@ class _AddImageState extends State<AddImage> {
     );
   }
 
-  //ok button
-  void ok() async {
-    if (pickedFile != null) {
-    Navigator.pop(context, pickedFile!.path); // Return the path of the picked image
-    }
-  }
-  
   /// Pick an image
   void pickImage() async {
     final XFile? image = await _picker.pickImage(source: ImageSource.gallery);

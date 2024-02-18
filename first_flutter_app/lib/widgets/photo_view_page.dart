@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:photo_view/photo_view.dart';
 import 'package:photo_view/photo_view_gallery.dart';
+import 'dart:io';
 
 class PhotoViewPage extends StatelessWidget {
   final List<String> photos;
@@ -26,20 +27,26 @@ class PhotoViewPage extends StatelessWidget {
       ),
       body: PhotoViewGallery.builder(
         itemCount: photos.length,
-        builder: (context, index) => PhotoViewGalleryPageOptions.customChild(
-          child: CachedNetworkImage(
-            imageUrl: photos[index],
-            placeholder: (context, url) => Container(
-              color: Colors.grey,
-            ),
-            errorWidget: (context, url, error) => Container(
-              color: Colors.red.shade400,
-            ),
-          ),
-          minScale: PhotoViewComputedScale.covered,
-          heroAttributes: PhotoViewHeroAttributes(tag: photos[index]),
-        ),
-        pageController: PageController(initialPage: index),
+        builder: (context, index) {
+          final uri = Uri.tryParse(photos[index]);
+          final isNetworkImage = uri != null && uri.scheme.startsWith('http');
+          return PhotoViewGalleryPageOptions.customChild(
+            child: isNetworkImage
+                ? CachedNetworkImage(
+                    imageUrl: photos[index],
+                    placeholder: (context, url) => Container(color: Colors.grey),
+                    errorWidget: (context, url, error) => Container(color: Colors.red.shade400),
+                  )
+                : Image.file(
+                    File(photos[index]),
+                    fit: BoxFit.cover,
+                  ),
+            minScale: PhotoViewComputedScale.contained * 0.8,
+            maxScale: PhotoViewComputedScale.covered * 2,
+            heroAttributes: PhotoViewHeroAttributes(tag: photos[index]),
+          );
+        },
+        pageController: PageController(initialPage: this.index),
         enableRotation: true,
       ),
     );
