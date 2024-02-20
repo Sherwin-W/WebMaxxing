@@ -1,9 +1,8 @@
 import 'dart:async';
-
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:toggle_switch/toggle_switch.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class TimerScreen extends StatefulWidget {
   const TimerScreen({super.key});
@@ -22,8 +21,25 @@ class _TimerScreenState extends State<TimerScreen> {
   final AudioPlayer _audioPlayer = AudioPlayer();
   Duration _originalDuration = const Duration(seconds: 0);
 
+  @override
+  void initState() {
+    super.initState();
+    _loadTickingPreference();
+  }
+
+  Future<void> _loadTickingPreference() async {
+    final prefs = await SharedPreferences.getInstance();
+    setState(() {
+      _isTicking = prefs.getBool('isTicking') ?? false;
+    });
+  }
+
   void _playClickSound() async {
-    await _audioPlayer.play(AssetSource('audio/click.mp3'));
+    final prefs = await SharedPreferences.getInstance(); // Re-read preference
+    bool isTickingNow = prefs.getBool('isTicking') ?? false;
+    if (isTickingNow) {
+      await _audioPlayer.play(AssetSource('audio/click.mp3'));
+    }
   }
 
   void _startTimer() {
@@ -160,17 +176,17 @@ class _TimerScreenState extends State<TimerScreen> {
                 ),
               ],
             ),
-            ToggleSwitch(
-              minWidth: 90.0,
-              cornerRadius: 20.0,
-              labels: const ['Tick', 'Silent'],
-              initialLabelIndex: _isTicking ? 0 : 1,
-              onToggle: (index) {
-                setState(() {
-                  _isTicking = !_isTicking;
-                });
-              },
-            )
+            // ToggleSwitch(
+            //   minWidth: 90.0,
+            //   cornerRadius: 20.0,
+            //   labels: const ['Tick', 'Silent'],
+            //   initialLabelIndex: _isTicking ? 0 : 1,
+            //   onToggle: (index) {
+            //     setState(() {
+            //       _isTicking = !_isTicking;
+            //     });
+            //   },
+            // )
           ],
         ),
       ),

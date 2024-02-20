@@ -35,6 +35,9 @@ void showSettingsPanel(BuildContext context, AnimationController controller) {
 */
 
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:toggle_switch/toggle_switch.dart';
+
 
 class SettingsWidget extends StatefulWidget {
   const SettingsWidget({Key? key}) : super(key: key);
@@ -46,6 +49,28 @@ class SettingsWidget extends StatefulWidget {
 class _SettingsWidgetState extends State<SettingsWidget> {
   // Tracks the expansion state of each section
   final List<bool> _isExpanded = [false, false, false];
+  bool _isTicking = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadTickingPreference();
+  }
+
+  Future<void> _loadTickingPreference() async {
+    final prefs = await SharedPreferences.getInstance();
+    setState(() {
+      _isTicking = prefs.getBool('isTicking') ?? false;
+    });
+  }
+
+  Future<void> _toggleTicking(int index) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setBool('isTicking', index == 0);
+    setState(() {
+      _isTicking = index == 0;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -64,6 +89,19 @@ class _SettingsWidgetState extends State<SettingsWidget> {
             _buildExpansionButton(0, 'Privacy', 'Our app respects your privacy by not collecting, storing, or sharing any personal data without your explicit consent. We only use anonymized data for app improvement purposes. For more information or to opt out, please contact our support team.'),
             _buildExpansionButton(1, 'Credits', '''-------- DEVELOPED BY --------\n''' 'SES Businesses\n\n' '''-------- PROGRAMMING --------\n''' 'Ethan\nSherwin\nSung'),
             _buildExpansionButton(2, 'Contact Us', 'sesbusinesses@gmail.com'),
+            const SizedBox(height: 20),
+            ToggleSwitch(
+              minWidth: 90.0,
+              cornerRadius: 20.0,
+              labels: const ['Tick', 'Silent'],
+              initialLabelIndex: _isTicking ? 0 : 1,
+              onToggle: (index) {
+                // Wrap the call to the asynchronous method inside an anonymous function
+                if (index != null) { // Check for null to satisfy the null-safety requirement
+                  _toggleTicking(index);
+                }
+              },
+            ),
           ],
         ),
       ),
