@@ -41,7 +41,7 @@ class _SplitPageState extends State<SplitPage> with SingleTickerProviderStateMix
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color(0xFFF3EDF6),
+        backgroundColor: const Color(0xFFF3EDF6),
         elevation: 0,
         actions: <Widget>[
           IconButton(
@@ -53,7 +53,7 @@ class _SplitPageState extends State<SplitPage> with SingleTickerProviderStateMix
                   child: child,
                 );
               },
-              child: Icon(Icons.settings),
+              child: const Icon(Icons.settings),
             ),
             onPressed: _onSettingsIconTap,
           ),
@@ -66,9 +66,9 @@ class _SplitPageState extends State<SplitPage> with SingleTickerProviderStateMix
             _selectedIndex = index;
           });
         },
-        children: <Widget>[
-          const QuotesWidget(),
-          const EdgeWidget(),
+        children: const <Widget>[
+          QuotesWidget(),
+          EdgeWidget(),
           LooksMaxxingWidget(),
         ],
       ),

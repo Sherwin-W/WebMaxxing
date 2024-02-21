@@ -92,7 +92,6 @@ class _AddImageState extends State<AddImage> {
     // Step 4: Copy the file to a application document directory.
     // Extract the filename from the path.
     final String fileName = path.basename(convertedImg.path);
-    final File localImage = await convertedImg.copy('$directoryPath/$fileName');
     print("Saved image under: $directoryPath/$fileName");
   }
 

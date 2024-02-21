@@ -7,7 +7,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 
 class LooksMaxxingWidget extends StatefulWidget {
-  LooksMaxxingWidget({Key? key}) : super(key: key);
+  const LooksMaxxingWidget({super.key});
 
   @override
   _LooksMaxxingWidgetState createState() => _LooksMaxxingWidgetState();
