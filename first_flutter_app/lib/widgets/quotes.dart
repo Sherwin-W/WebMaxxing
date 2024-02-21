@@ -1,4 +1,3 @@
-import 'dart:async';
 import 'package:flutter/material.dart';
 
 class QuotesWidget extends StatefulWidget {
@@ -73,11 +72,11 @@ class _QuotesWidgetState extends State<QuotesWidget> {
       onTap: _nextQuote, // Change quote on tap
       child: Container(
         padding: const EdgeInsets.all(20.0), // Padding around the quote
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
-            colors: [Color(0xffee9ca7), Color(0xF6F0ED)], // Example gradient colors
+            colors: [Color(0xffee9ca7), Color(0x00f6f0ed)], // Example gradient colors
           ),
         ),
         alignment: Alignment.center,
