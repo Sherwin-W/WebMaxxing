@@ -53,22 +53,22 @@ class _SettingsWidgetState extends State<SettingsWidget> {
       applyTheme(theme); // Make sure this method correctly applies the theme
     }
 
-  Widget _buildThemeToggle() {
-    return ToggleSwitch(
-      minWidth: 90.0,
-      cornerRadius: 20.0,
-      activeBgColors: [
-        const [Colors.lightBlueAccent],
-        [Colors.grey.shade600],
-      ],
-      labels: const ['Light', 'Dark'],
-      onToggle: (index) {
-        if (index != null) {
-          _setThemePreference(AppTheme.values[index]);
-        }
-      },
-    );
-  }
+  // Widget _buildThemeToggle() {
+  //   return ToggleSwitch(
+  //     minWidth: 90.0,
+  //     cornerRadius: 20.0,
+  //     activeBgColors: [
+  //       const [Colors.lightBlueAccent],
+  //       [Colors.grey.shade600],
+  //     ],
+  //     labels: const ['Light', 'Dark'],
+  //     onToggle: (index) {
+  //       if (index != null) {
+  //         _setThemePreference(AppTheme.values[index]);
+  //       }
+  //     },
+  //   );
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -101,7 +101,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
               },
             ),
             const SizedBox(height: 20),
-            _buildThemeToggle(), // Corrected method call
+            // _buildThemeToggle(), // Corrected method call
             const SizedBox(height: 20),
           ],
         ),

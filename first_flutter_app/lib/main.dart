@@ -22,13 +22,13 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         fontFamily: 'Poppins',
-        brightness: Brightness.light, // Define light theme settings here
+        // brightness: Brightness.light, // Define light theme settings here
       ),
       darkTheme: ThemeData(
         fontFamily: 'Poppins',
-        brightness: Brightness.dark, // Define dark theme settings here
+        // brightness: Brightness.dark, // Define dark theme settings here
       ),
-      themeMode: isDarkTheme ? ThemeMode.dark : ThemeMode.light, // Apply the theme based on isDarkTheme
+      // themeMode: isDarkTheme ? ThemeMode.dark : ThemeMode.light, // Apply the theme based on isDarkTheme
       home: const SplitPage(),
     );
   }

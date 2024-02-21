@@ -76,7 +76,7 @@ class _QuotesWidgetState extends State<QuotesWidget> {
           gradient: LinearGradient(
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
-            colors: [Color(0xffee9ca7), Color(0x00f6f0ed)], // Example gradient colors
+            colors: [Color(0xffee9ca7), Color(0xFFF2E9E4)], // Example gradient colors
           ),
         ),
         alignment: Alignment.center,
